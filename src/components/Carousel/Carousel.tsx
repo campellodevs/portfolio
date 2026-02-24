@@ -1,7 +1,7 @@
 import styles from './Carousel.module.css'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 
-export default function Carousel() {
+export default function Carousel() {  
   const [currentIndex, setCurrentIndex] = useState(0)
   
   const projects = [
@@ -19,7 +19,7 @@ export default function Carousel() {
     },
     {
       title: "Couple.me",
-      description: "Site interativo para casais utilizarem simultaneamente. Chat em tempo real e atividades compartilhadas.",
+      description: "Site interativo para casais utilizarem simultaneamente. Atividades compartilhadas.",
       tags: ["Next.js", "Socket.io", "Tailwind"],
       category: "Web App"
     }

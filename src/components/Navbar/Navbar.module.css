@@ -1,24 +1,35 @@
-
-
+/* components/Navbar/Navbar.module.css */
 .nav {
   display: flex;
-justify-content: center;
+  justify-content: center;
   align-items: center;
-  padding: 1rem 3rem;
-  background: rgba(15, 15, 59, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(167, 139, 250, 0.15);
-  position: sticky;
+  padding: 1.2rem 2rem;
+  position: fixed; /* MUDOU DE STICKY PARA FIXED */
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 100;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  background: rgba(5, 5, 15, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(167, 139, 250, 0.15);
 }
 
+/* Quando scrollar, fica mais sólido (mas sempre visível) */
+.navScrolled {
+  background: rgba(3, 3, 10, 0.95);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+  border-bottom-color: rgba(167, 139, 250, 0.3);
+}
+
+/* Remove as classes de esconder */
+/* .navVisible e .navHidden não são mais necessárias */
 
 .links {
   display: flex;
-  gap: 2.5rem;
+  gap: 3rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -31,37 +42,38 @@ justify-content: center;
 .links a {
   color: #94a3b8;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   padding: 0.5rem 0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   position: relative;
 }
 
+.links a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.7);
+}
+
+/* Underline animado */
 .links a::before {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg, transparent, #a78bfa, #c4b5fd, #a78bfa, transparent);
   transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.links a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 .links a:hover::before {
   transform: scaleX(1);
-  transform-origin: left;
 }
 
+/* Efeito de glow no background */
 .links a::after {
   content: '';
   position: absolute;
@@ -69,7 +81,7 @@ justify-content: center;
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.3) 0%, transparent 70%);
   transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease;
   border-radius: 50%;
@@ -78,17 +90,17 @@ justify-content: center;
 }
 
 .links a:hover::after {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
 }
 
-/* Efeito de brilho nos cantos */
+/* Linha de brilho no topo */
 .nav::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 10%;
+  right: 10%;
   height: 1px;
   background: linear-gradient(90deg, 
     transparent 0%, 
@@ -97,20 +109,14 @@ justify-content: center;
     rgba(167, 139, 250, 0.5) 80%,
     transparent 100%
   );
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
-.nav::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 0%, rgba(167, 139, 250, 0.1), transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-}
+/* Padding no body para não ficar conteúdo escondido atrás da navbar */
+/* Adicione isso no seu global.css */
+/* body {
+  padding-top: 70px;
+} */
 
 /* Responsividade */
 @media (max-width: 768px) {
@@ -122,52 +128,23 @@ justify-content: center;
     gap: 1.5rem;
   }
   
-  .logo {
-    font-size: 1.1rem;
-  }
-  
   .links a {
     font-size: 0.85rem;
+    letter-spacing: 0.08em;
   }
 }
 
 @media (max-width: 480px) {
   .nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.8rem;
+    padding: 0.8rem 1rem;
   }
   
   .links {
     gap: 1rem;
   }
-}   
-/* Animação de entrada suave */
-@keyframes glowPulse {
-  0%, 100% {
-    opacity: 0.6;
+  
+  .links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
   }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* Efeito de partículas nos links (opcional) */
-.links a {
-  overflow: hidden;
-}
-
-.links a span {
-  position: relative;
-  z-index: 1;
-}
-
-/* Efeito de hover mais intenso para o logo */
-.logo {
-  animation: glowPulse 3s infinite;
-}
-
-/* Efeito de brilho no hover dos links */
-.links a:hover {
-  transform: translateY(-1px);
 }

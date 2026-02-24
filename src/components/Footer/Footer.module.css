@@ -1,0 +1,81 @@
+/* components/Footer/Footer.module.css */
+.footer {
+  padding: 2rem;
+  background: rgba(3, 3, 10, 0.8);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(167, 139, 250, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.copyright {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.developed {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.name {
+  color: #a78bfa;
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.name:hover {
+  color: #c4b5fd;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Efeito de brilho sutil no footer */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(167, 139, 250, 0.2) 20%, 
+    rgba(167, 139, 250, 0.4) 50%,
+    rgba(167, 139, 250, 0.2) 80%,
+    transparent 100%
+  );
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem;
+  }
+  
+  .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .copyright, .developed {
+    font-size: 0.8rem;
+  }
+}

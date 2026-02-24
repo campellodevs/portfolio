@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   padding: 1.2rem 2rem;
-  position: fixed; /* MUDOU DE STICKY PARA FIXED */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -14,9 +14,9 @@
   background: rgba(5, 5, 15, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+  box-sizing: border-box; /* Garante que padding não aumente a largura */
 }
 
-/* Quando scrollar, fica mais sólido (mas sempre visível) */
 .navScrolled {
   background: rgba(3, 3, 10, 0.95);
   backdrop-filter: blur(15px);
@@ -24,9 +24,46 @@
   border-bottom-color: rgba(167, 139, 250, 0.3);
 }
 
-/* Remove as classes de esconder */
-/* .navVisible e .navHidden não são mais necessárias */
+/* Botão Hambúrguer - escondido no desktop */
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 1.5rem;
+  padding: 0;
+}
 
+.hamburgerLine {
+  width: 22px;
+  height: 2px;
+  background: #a78bfa;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburgerActive .hamburgerLine:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburgerActive .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerActive .hamburgerLine:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Links - desktop */
 .links {
   display: flex;
   gap: 3rem;
@@ -112,39 +149,113 @@
   opacity: 0.5;
 }
 
-/* Padding no body para não ficar conteúdo escondido atrás da navbar */
-/* Adicione isso no seu global.css */
-/* body {
-  padding-top: 70px;
-} */
-
-/* Responsividade */
+/* ========== MOBILE ========== */
 @media (max-width: 768px) {
   .nav {
-    padding: 1rem 1.5rem;
+    justify-content: flex-start; /* Alinha itens à esquerda */
+    padding: 0.8rem 1.5rem;
   }
-  
+
+  .hamburger {
+    display: flex; /* Mostra hambúrguer no mobile */
+  }
+
   .links {
-    gap: 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(3, 3, 10, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none; /* Impede cliques quando invisível */
   }
-  
+
+  .linksMobile {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
   .links a {
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
+    font-size: 1.3rem;
+    padding: 1rem 2rem;
+    display: block;
+    text-align: center;
+  }
+
+  /* Animações individuais para cada link */
+  .linksMobile li {
+    animation: slideIn 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  .linksMobile li:nth-child(1) { animation-delay: 0.1s; }
+  .linksMobile li:nth-child(2) { animation-delay: 0.15s; }
+  .linksMobile li:nth-child(3) { animation-delay: 0.2s; }
+  .linksMobile li:nth-child(4) { animation-delay: 0.25s; }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Ajuste do underline para mobile */
+  .links a::before {
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+  }
+
+  .links a:hover::before {
+    transform: translateX(-50%) scaleX(1);
   }
 }
 
+/* Celulares pequenos */
 @media (max-width: 480px) {
   .nav {
-    padding: 0.8rem 1rem;
+    padding: 1.4rem 1rem;
   }
-  
-  .links {
-    gap: 1rem;
+
+  .hamburger {
+    width: 36px;
+    height: 36px;
+    right: 1rem;
   }
-  
+
+  .hamburgerLine {
+    width: 20px;
+  }
+
   .links a {
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
   }
+
+  .linksMobile li {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Previne scroll da página com menu aberto */
+:global(body.menu-open) {
+  overflow: hidden;
 }

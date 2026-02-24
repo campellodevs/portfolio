@@ -1,11 +1,16 @@
-import Navbar from './components/Navbar/Navbar'
+  import Navbar from './components/Navbar/Navbar'
+  import Carousel from './components/Carousel/Carousel'
+  import About from './components/About/About'
+  function App() {
+    return (
+      <>
+        
+        <Navbar />
+        <About/>  
+        <Carousel />
+  
+      </>
+    )
+  }
 
-function App() {
-  return (
-    <>
-      <Navbar />
-    </>
-  )
-}
-
-export default App
+  export default App

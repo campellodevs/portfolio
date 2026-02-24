@@ -1,0 +1,407 @@
+/* components/Resume/Resume.module.css */
+.section {
+  padding: 5rem 2.5rem;
+  background: linear-gradient(135deg, #030314 0%, #0a0a20 50%, #030314 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Lado esquerdo - Currículo emoldurado */
+.resumeLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resumeFrame {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background: rgba(13, 13, 31, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 30px;
+  box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.5);
+}
+
+/* Efeitos de moldura */
+.frameGlow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #a78bfa, #3b82f6, #a78bfa);
+  border-radius: 32px;
+  opacity: 0.3;
+  z-index: -1;
+  animation: framePulse 3s ease-in-out infinite;
+}
+
+@keyframes framePulse {
+  0%, 100% { opacity: 0.3; filter: blur(5px); }
+  50% { opacity: 0.6; filter: blur(8px); }
+}
+
+.frameCorner {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-top: 3px solid #a78bfa;
+  border-left: 3px solid #a78bfa;
+  border-radius: 15px 0 0 0;
+}
+
+.frameCorner2 {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-bottom: 3px solid #3b82f6;
+  border-right: 3px solid #3b82f6;
+  border-radius: 0 0 15px 0;
+}
+
+.resumeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resumeTitle {
+  font-size: 2rem;
+  color: #f0f4fa;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.resumeTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #a78bfa, #3b82f6);
+  border-radius: 2px;
+}
+
+.resumeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.infoItem {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px dashed rgba(167, 139, 250, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.infoLabel {
+  min-width: 100px;
+  color: #a78bfa;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.infoValue {
+  color: #cbd5e0;
+}
+
+.skillsPreview {
+  margin-top: 0.5rem;
+}
+
+.skillsPreview h3 {
+  color: #f0f4fa;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skillTags span {
+  padding: 0.3rem 1rem;
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #a78bfa;
+  transition: all 0.3s;
+}
+
+.skillTags span:hover {
+  background: rgba(167, 139, 250, 0.2);
+  transform: translateY(-2px);
+}
+
+.downloadButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #a78bfa, #3b82f6);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 1rem;
+  box-shadow: 0 10px 20px -5px rgba(167, 139, 250, 0.3);
+}
+
+.downloadButton:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 30px -5px rgba(167, 139, 250, 0.5);
+}
+
+.downloadIcon {
+  font-size: 1.2rem;
+}
+
+/* Lado direito - Mosaico */
+.certificatesRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.certificatesTitle {
+  font-size: 2rem;
+  color: #f0f4fa;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.certificatesTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #a78bfa);
+  border-radius: 2px;
+}
+
+.mosaicGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.certCard {
+  background: rgba(13, 13, 31, 0.6);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.certCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(167, 139, 250, 0.5);
+  box-shadow: 0 15px 30px -10px rgba(167, 139, 250, 0.3);
+}
+
+.certImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.certImageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.certCard:hover .certImageWrapper img {
+  transform: scale(1.1);
+}
+
+.certOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(167, 139, 250, 0.2);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.certCard:hover .certOverlay {
+  opacity: 1;
+}
+
+.certOverlay span {
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.certInfo {
+  padding: 1rem;
+}
+
+.certInfo h4 {
+  color: #f0f4fa;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.certInfo p {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  background: #0d0d1f;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.modalClose {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #a78bfa;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.modalClose:hover {
+  transform: rotate(90deg);
+  background: #3b82f6;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.modalDownload {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #a78bfa, #3b82f6);
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.modalDownload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(167, 139, 250, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .resumeLeft {
+    order: 1;
+  }
+  
+  .certificatesRight {
+    order: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .mosaicGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .resumeFrame {
+    max-width: 100%;
+  }
+  
+  .modal {
+    padding: 1rem;
+  }
+  
+  .modalClose {
+    top: -10px;
+    right: -10px;
+    width: 35px;
+    height: 35px;
+  }
+}

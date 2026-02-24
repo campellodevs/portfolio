@@ -27,7 +27,7 @@ export default function About() {
     {
       id: 'localizacao',
       title: '📍 Localização',
-      content: 'Baseado em [Sua Cidade], Brasil. Disponível para trabalho remoto e oportunidades internacionais. Aberto a colaborações e novos desafios!'
+      content: 'Baseado em São Paulo, Brasil. Disponível para trabalho remoto e oportunidades internacionais. Aberto a colaborações e novos desafios!'
     }
   ]
 

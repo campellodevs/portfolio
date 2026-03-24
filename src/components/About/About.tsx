@@ -57,8 +57,7 @@ export default function About() {
             Olá! Meu nome é Lucca Campello e sou desenvolvedor full-stack apaixonado por criar experiências digitais únicas. 
             Comecei minha jornada na programação há 2 anos e desde então venho explorando as possibilidades infinitas da tecnologia.
             <br /><br />
-            Atualmente curso Engenharia de Software na Universidade São Judas Tadeu e estou sempre em busca de novos conhecimentos e desafios. 
-            Acredito que a tecnologia tem o poder de transformar vidas e é isso que me motiva todos os dias.
+            Atualmente curso Engenharia de Software na Universidade São Judas Tadeu e estou sempre em busca de novos conhecimentos e desafios.  
           </p>
 
           {/* Seções expansíveis */}

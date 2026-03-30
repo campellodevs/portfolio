@@ -8,42 +8,78 @@ import type { Project } from './ProjectsModal'
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   const projects: Project[] = [
-    {
-      title: "Sistema de Estoque",
-      description: "Controle de estoque desktop com React + Electron. Interface intuitiva e relatórios em tempo real.",
-      detailedDescription: "Aplicação desktop completa para gestão de inventário. Permite cadastro de produtos, controle de entradas e saídas, geração de relatórios em PDF e alertas de estoque mínimo. Banco de dados local com SQLite para uso offline.",
-      tags: ["React", "Electron", "SQLite"],
-      category: "Desktop",
-      // image: "/images/estoque.png",
-      // liveUrl: "https://seu-projeto.vercel.app",
-      // githubUrl: "https://github.com/seu-usuario/sistema-estoque",
-    },
-    {
-      title: "API de NCM",
-      description: "API em Python para consulta e validação de NCM com Postman. Documentação completa e testes automatizados.",
-      detailedDescription: "API REST desenvolvida em Python/Flask para consulta, validação e classificação de códigos NCM (Nomenclatura Comum do Mercosul). Inclui documentação interativa via Swagger e suíte de testes automatizados com Postman/Newman.",
-      tags: ["Python", "Flask", "Postman"],
-      category: "Back-end",
-      // image: "/images/api-ncm.png",
-      // liveUrl: "https://api-ncm.vercel.app",
-      // githubUrl: "https://github.com/seu-usuario/api-ncm",
-    },
-    {
-      title: "Couple.me",
-      description: "Site interativo para casais utilizarem simultaneamente. Atividades compartilhadas.",
-      detailedDescription: "Plataforma web em tempo real para casais realizarem atividades juntos mesmo à distância. Funcionalidades incluem lista de desejos compartilhada, calendário de datas especiais, diário conjunto e chat sincronizado via WebSocket.",
-      tags: ["Next.js", "Socket.io", "Tailwind"],
-      category: "Web App",
-      // image: "/images/couple-me.png",
-      // liveUrl: "https://couple-me.vercel.app",
-      // githubUrl: "https://github.com/seu-usuario/couple-me",
-    }
+   {
+  title: "ApproveFlow",
+  description: "Plataforma SaaS para gestão de projetos com validação de entregas e comunicação em tempo real.",
+  detailedDescription: "Sistema completo para gerenciamento de projetos entre freelancers e clientes. Permite criação e aprovação de tarefas, chat em tempo real com threads organizadas, notificações inteligentes por email e personalização de identidade para cada freelancer. Desenvolvido com foco em reduzir retrabalho e centralizar toda a comunicação do projeto em um único ambiente.",
+  tags: ["Next.js", "TypeScript", "Prisma", "Supabase"],
+  category: "SaaS",
+  image: "/assets/img/approveporfolio.png",
+  liveUrl: "https://approveflow-two.vercel.app/",
+  githubUrl: "https://github.com/campellodevs/approveflow",
+},
+{
+  title: "Yuna Studio",
+  description: "Agência de tecnologia focada no desenvolvimento de websites e sistemas web sob medida.",
+  detailedDescription: "Plataforma institucional desenvolvida para apresentar os serviços da Yuna Studio, com foco em conversão e experiência do usuário. Inclui estrutura estratégica de serviços, portfólio dinâmico, metodologia de trabalho e integração com canais de contato. Projetada para transmitir profissionalismo, confiança e facilitar a captação de novos clientes.",
+  tags: ["Next.js", "TailwindCSS", "TypeScript"],
+  category: "Website",
+  image: "/assets/img/yunaportfolio.png",
+  liveUrl: "https://yunastudio.com.br",
+  githubUrl: "https://github.com/campellodevs/yuna-studio",
+},
+{
+  title: "FinQ",
+  description: "Sistema web para organização financeira e gestão inteligente de investimentos.",
+  detailedDescription: "Aplicação web voltada para controle financeiro pessoal, com funcionalidades de acompanhamento de investimentos, organização de carteira e análise de desempenho ao longo do tempo. O sistema foi projetado para oferecer clareza na tomada de decisões financeiras, com foco em usabilidade e visualização de dados.",
+  tags: ["React", "TypeScript", "Node.js"],
+  category: "Web System",
+  image: "/assets/img/finqportfolio2.png",
+  liveUrl: "https://finans-project.vercel.app",
+  githubUrl: "https://github.com/campellodevs/finans-project",
+},
+{
+  title: "O Calhambeque",
+  description: "Landing page moderna para food truck com cardápio digital multilíngue e QR Code.",
+  detailedDescription: "Aplicação web desenvolvida para apresentar o food truck O Calhambeque, com foco em identidade visual marcante e experiência do usuário. O projeto inclui um sistema de cardápio digital com suporte a múltiplos idiomas e geração de QR Code, permitindo acesso rápido durante eventos. A solução foi pensada para unir design, performance e praticidade em um contexto real de uso.",
+  tags: ["Next.js", "React", "TypeScript", "TailwindCSS"],
+  category: "Landing Page",
+  image: "/assets/img/ocalhambequeporfolio2.png",
+  liveUrl: "https://calhambeque.vercel.app/",
+  githubUrl: "https://github.com/campellodevs/calhambeque",
+},
+{
+  title: "Filtra NCM",
+  description: "Sistema para validação de NCM e gestão de produtos com foco em automação e eficiência no varejo.",
+  detailedDescription: "Aplicação desenvolvida em Python com FastAPI e SQLite voltada para validação de NCMs e gerenciamento de produtos em comércios e varejos. O sistema automatiza tarefas repetitivas, garantindo maior confiabilidade no cadastro de produtos, evitando duplicidades e auxiliando na classificação em categorias. Conta com CRUD completo, validação de dados com Pydantic, testes automatizados e documentação interativa via Swagger, proporcionando uma base sólida e escalável para evolução com dashboards e análises de dados.",
+  tags: ["Python", "FastAPI", "SQLite", "Pydantic", "Pytest", "Postman"],
+  category: "Backend System",
+  // image: "",
+  liveUrl: "",
+  githubUrl: "https://github.com/campellodevs/PortfolioPython-FiltraNCM",
+}
   ]
 
   const nextSlide = () => setCurrentIndex(prev => (prev + 1) % projects.length)
   const prevSlide = () => setCurrentIndex(prev => (prev - 1 + projects.length) % projects.length)
+
+  const openProject = (project: Project) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
+  }
+
+  const openAll = () => {
+    setSelectedProject(null)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
+  }
 
   return (
     <>
@@ -69,6 +105,15 @@ export default function Carousel() {
                     position === projects.length - 1 ? styles.cardLeft :
                     styles.cardHidden
                   }`}
+                  onClick={() => openProject(project)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      openProject(project)
+                    }
+                  }}
                 >
                   <span className={styles.projectTag}>{project.category}</span>
                   <h3>{project.title}</h3>
@@ -102,7 +147,7 @@ export default function Carousel() {
         <div className={styles.viewAllWrapper}>
           <button
             className={styles.viewAllBtn}
-            onClick={() => setIsModalOpen(true)}
+            onClick={openAll}
           >
             Ver todos os projetos
             <span className={styles.viewAllIcon}>✦</span>
@@ -112,8 +157,9 @@ export default function Carousel() {
 
       <ProjectsModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={closeModal}
         projects={projects}
+        initialProject={selectedProject}
       />
     </>
   )

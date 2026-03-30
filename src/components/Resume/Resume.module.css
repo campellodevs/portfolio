@@ -222,61 +222,39 @@
   backdrop-filter: blur(5px);
   border: 1px solid rgba(167, 139, 250, 0.15);
   border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
+  cursor: default;
   transition: all 0.3s;
+  padding: 1rem;
 }
 
-.certCard:hover {
-  transform: translateY(-5px);
-  border-color: rgba(167, 139, 250, 0.5);
-  box-shadow: 0 15px 30px -10px rgba(167, 139, 250, 0.3);
+.certContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.certImageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-}
-
-.certImageWrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s;
-}
-
-.certCard:hover .certImageWrapper img {
-  transform: scale(1.1);
-}
-
-.certOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(167, 139, 250, 0.2);
-  backdrop-filter: blur(2px);
+.certIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), rgba(59, 130, 246, 0.15));
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
+  color: #a78bfa;
+  flex-shrink: 0;
 }
 
-.certCard:hover .certOverlay {
-  opacity: 1;
+.certText h4 {
+  color: #f0f4fa;
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
 }
 
-.certOverlay span {
-  color: white;
-  font-size: 0.9rem;
-  padding: 0.5rem 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.certText p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin: 0;
 }
 
 .certInfo {
@@ -348,21 +326,19 @@
   border-radius: 12px;
 }
 
-.modalDownload {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 2rem;
-  background: linear-gradient(135deg, #a78bfa, #3b82f6);
-  border-radius: 30px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s;
-}
-
-.modalDownload:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(167, 139, 250, 0.3);
+.modalPlaceholder {
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), rgba(59, 130, 246, 0.15));
+  border-radius: 12px;
+  color: #f0f4fa;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: center;
+  padding: 1rem;
 }
 
 /* Responsividade */
@@ -405,3 +381,6 @@
     height: 35px;
   }
 }
+
+
+

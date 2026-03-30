@@ -1,57 +1,31 @@
 // components/Resume/Resume.tsx
 import { useState } from 'react'
+import { BookOpen, GraduationCap, Server } from 'lucide-react'
 import styles from './Resume.module.css'
+
+type Certificate = {
+  id: number
+  title: string
+  issuer: string
+  date: string
+}
 
 export default function Resume() {
   const [selectedCert, setSelectedCert] = useState<number | null>(null)
   
-  const certificates = [
-    {
-      id: 1,
-      title: "React Avançado",
-      issuer: "Rocketseat",
-      date: "2024",
-      image: "/assets/certs/react-avancado.jpg",
-      pdf: "/assets/certs/react-avancado.pdf"
-    },
-    {
-      id: 2,
-      title: "TypeScript Expert",
-      issuer: "Alura",
-      date: "2023",
-      image: "/assets/certs/typescript.jpg",
-      pdf: "/assets/certs/typescript.pdf"
-    },
-    {
-      id: 3,
-      title: "Node.js Performance",
-      issuer: "Udemy",
-      date: "2023",
-      image: "/assets/certs/nodejs.jpg",
-      pdf: "/assets/certs/nodejs.pdf"
-    },
-    {
-      id: 4,
-      title: "UI/Design Principles",
-      issuer: "Origamid",
-      date: "2024",
-      image: "/assets/certs/ui-design.jpg",
-      pdf: "/assets/certs/ui-design.pdf"
-    },
-    {
-      id: 5,
-      title: "Python for Data",
-      issuer: "DataCamp",
-      date: "2023",
-      image: "/assets/certs/python-data.jpg",
-      pdf: "/assets/certs/python-data.pdf"
-    }
+  const certificates: Certificate[] = [
+    { id: 1, title: 'HTML e CSS Avançado', issuer: 'b7web', date: '2025' },
+    { id: 2, title: 'JavaScript Avançado', issuer: 'b7web', date: '2025' },
+    { id: 3, title: 'TypeScript Avançado', issuer: 'b7web', date: '2026' },
+    { id: 4, title: 'React.js Avançados', issuer: 'b7web', date: '2026' },
+    { id: 5, title: 'Python Module Advanced', issuer: 'Instituto Fatec e Huawei', date: '2025' },
+    { id: 6, title: 'Gestão em TI', issuer: 'Universidade São Judas Tadeu', date: '2026' }
   ]
 
   const handleDownload = () => {
-    // Link para download do currículo
+    const pdfPath = '/assets/docs/Lucca Campello CV -2.pdf'
     const link = document.createElement('a')
-    link.href = '/assets/docs/curriculo-lucca-campello.pdf' // Caminho do seu PDF
+    link.href = encodeURI(pdfPath)
     link.download = 'Curriculo-Lucca-Campello.pdf'
     document.body.appendChild(link)
     link.click()
@@ -120,44 +94,27 @@ export default function Resume() {
               <div 
                 key={cert.id} 
                 className={styles.certCard}
-                onClick={() => setSelectedCert(cert.id)}
               >
-                <div className={styles.certImageWrapper}>
-                  <img src={cert.image} alt={cert.title} />
-                  <div className={styles.certOverlay}>
-                    <span>Clique para ver</span>
+                <div className={styles.certContent}>
+                  <span className={styles.certIcon}>
+                    {cert.title.toLowerCase().includes('python') ? (
+                      <Server />
+                    ) : cert.title.toLowerCase().includes('gestão') ? (
+                      <GraduationCap />
+                    ) : (
+                      <BookOpen />
+                    )}
+                  </span>
+                  <div className={styles.certText}>
+                    <h4>{cert.title}</h4>
+                    <p>{cert.issuer} • {cert.date}</p>
                   </div>
-                </div>
-                <div className={styles.certInfo}>
-                  <h4>{cert.title}</h4>
-                  <p>{cert.issuer} • {cert.date}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Modal para visualizar certificado */}
-      {selectedCert !== null && (
-        <div className={styles.modal} onClick={() => setSelectedCert(null)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.modalClose} onClick={() => setSelectedCert(null)}>×</button>
-            <img 
-              src={certificates.find(c => c.id === selectedCert)?.image} 
-              alt="Certificado"
-              className={styles.modalImage}
-            />
-            <a 
-              href={certificates.find(c => c.id === selectedCert)?.pdf}
-              download
-              className={styles.modalDownload}
-            >
-              📥 Download PDF
-            </a>
-          </div>
-        </div>
-      )}
     </section>
   )
 }

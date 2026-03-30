@@ -18,22 +18,24 @@ interface ProjectsModalProps {
   isOpen: boolean
   onClose: () => void
   projects: Project[]
+  initialProject?: Project | null
 }
 
-export default function ProjectsModal({ isOpen, onClose, projects }: ProjectsModalProps) {
+export default function ProjectsModal({ isOpen, onClose, projects, initialProject }: ProjectsModalProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isAnimatingIn, setIsAnimatingIn] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => setIsAnimatingIn(true), 10)
+      if (initialProject) setSelectedProject(initialProject)
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
       setTimeout(() => setSelectedProject(null), 300)
     }
     return () => { document.body.style.overflow = '' }
-  }, [isOpen])
+  }, [isOpen, initialProject])
 
   const handleClose = useCallback(() => {
     setIsAnimatingIn(false)

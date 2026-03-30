@@ -1,5 +1,4 @@
 // components/Resume/Resume.tsx
-import { useState } from 'react'
 import { BookOpen, GraduationCap, Server } from 'lucide-react'
 import styles from './Resume.module.css'
 
@@ -11,8 +10,6 @@ type Certificate = {
 }
 
 export default function Resume() {
-  const [selectedCert, setSelectedCert] = useState<number | null>(null)
-  
   const certificates: Certificate[] = [
     { id: 1, title: 'HTML e CSS Avançado', issuer: 'b7web', date: '2025' },
     { id: 2, title: 'JavaScript Avançado', issuer: 'b7web', date: '2025' },

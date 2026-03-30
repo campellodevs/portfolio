@@ -162,18 +162,28 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Mensagem direta (opcional) */}
-          <div className={styles.directMessage}>
-            <p className={styles.messageText}>
-              <MessageCircle className={styles.inlineIcon} /> Prefere me mandar uma mensagem direta?
-            </p>
-            <a 
-              href="mailto:luccacampello21@gmail.com" 
-              className={styles.messageButton}
-            >
-              <Send className={styles.inlineIcon} /> Enviar Email
-            </a>
-          </div>
+          <section
+            className={styles.directMessage}
+            aria-labelledby="direct-message-title"
+          >
+            <div className={styles.directContent}>
+              <h3 id="direct-message-title" className={styles.directTitle}>
+                <MessageCircle className={styles.inlineIcon} />
+                Preferencialmente por e‑mail
+              </h3>
+              <p className={styles.directSubtitle}>
+                Se preferir, pode me enviar uma mensagem direta.
+              </p>
+            </div>
+            <div className={styles.directActions}>
+              <a 
+                href="mailto:luccacampello21@gmail.com" 
+                className={styles.messageButton}
+              >
+                <Send className={styles.inlineIcon} /> Enviar e-mail
+              </a>
+            </div>
+          </section>
         </div>
 
         {/* Toast de copiado */}
